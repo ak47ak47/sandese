@@ -1,0 +1,1 @@
+The 'sandese app' is a real time chat application create using react app, material ui for some components and icons, emoji picker to use emojis in chats, avatars dicebear api for some awesome avatars and at last firebase to store data and google auth for user authentication to use the app.
