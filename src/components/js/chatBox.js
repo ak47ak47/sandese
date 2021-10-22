@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import '../css/chatBox.css';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import { useParams } from "react-router-dom";
 import { db, doc, query, addDoc, orderBy, collection, onSnapshot, serverTimestamp } from '../../firebase';
@@ -11,6 +13,7 @@ import { useStateValue } from './stateProvider';
 import EmojiModal from './emojiModal';
 
 function ChatBox() {
+    const history = useHistory();
     const { roomId } = useParams();
     const [roomName, setRoomName] = useState('');
     const [messages, setMessages] = useState([]);
@@ -48,11 +51,16 @@ function ChatBox() {
                 <div className="chatRoomInfo">
                     <h2>{roomName}</h2>
                 </div>
+                <div className="backLink">
+                    <IconButton sx={{ p: '10px' }} aria-label="back" onClick={()=>history.push('/')} >
+                        <ArrowBackIcon />
+                    </IconButton>
+                </div>
             </header>
             <div className="chatBox_body">
                 <div className="msgDisplayBox">
-                    {messages.map((each) => (
-                        <div className={`msgBox ${each.name === user.displayName && 'msgReciver'}`}>
+                    {messages.map((each, index) => (
+                        <div key={index} className={`msgBox ${each.name === user.displayName && 'msgReciver'}`}>
                             <span className="msgName">{each.name}</span>
                             <p className="msg">{each.message}</p>
                             <span className="msgInfo">{new Date(each.timestamp?.toDate()).toLocaleTimeString()}</span>

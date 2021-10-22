@@ -1,12 +1,14 @@
 import React from 'react';
 import '../css/chatRoom.css';
 import Avatar from '@mui/material/Avatar';
-import { Link  } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-function chatRoom({ id, name }) {
+function ChatRoom({ id, name }) {
+    const { roomId } = useParams();
+    const color = roomId === id ? '#d8deec' : 'transparent';
     return (
         <Link to={`/rooms/${id}`} style={{ textDecoration: 'none' }}>
-            <div className="chatRoom">
+            <div className="chatRoom" style={{ backgroundColor: color }}>
                 <Avatar src={`https://avatars.dicebear.com/api/human/${name}.svg`} variant="rounded" />
                 <div className="chatRoomInfo">
                     <h2>{name}</h2>
@@ -16,4 +18,4 @@ function chatRoom({ id, name }) {
     );
 }
 
-export default chatRoom;
+export default ChatRoom;

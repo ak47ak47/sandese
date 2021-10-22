@@ -75,3 +75,19 @@
     align-items: center;
     padding: 1rem;
 }
+
+.backLink {
+    display: none;
+}
+
+@media only screen and (max-width: 500px) {
+    .backLink {
+        display: block;
+    }
+    .chatBox {
+        flex: 1;
+    }
+    .hide {
+        display: none;
+    }
+}
