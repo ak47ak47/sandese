@@ -3,16 +3,26 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import logo from '../../logo.png';
-import { auth, provider, signInWithPopup } from '../../firebase';
+import { auth, provider, signInWithPopup, signInWithEmailAndPassword } from '../../firebase';
 import { actionTypes } from './reducer';
 import { useStateValue } from './stateProvider';
 
-export default function SignIn() {
-    const [{}, dispatch] = useStateValue();
+export default function LogIn() {
+    const [{ }, dispatch] = useStateValue();
 
-    const singIn = (e) => {
+    const logIn = (e) => {
         e.preventDefault();
         signInWithPopup(auth, provider).then((res) => {
+            dispatch({
+                type: actionTypes.SET_USER,
+                user: res.user,
+            });
+        }).catch((err) => {
+            alert(err.message);
+        });
+    };
+    const logInGuest = () => {
+        signInWithEmailAndPassword(auth, 'guest@sandese.com', 'sandeseguestlogin').then((res) => {
             dispatch({
                 type: actionTypes.SET_USER,
                 user: res.user,
@@ -47,20 +57,17 @@ export default function SignIn() {
                 pointerEvents: 'none',
                 display: 'flex',
                 alignItems: 'center',
-             }}>
+            }}>
                 <img src={logo} alt="app logo" className="app_logo" />
                 sandese
             </Typography>
             <Typography component="h1" variant="h5" sx={{ textAlign: 'center', fontSize: '1.25em', py: 2 }}>
-                Please sing in to become user of sandese
+                Please log in to become user of sandese
             </Typography>
-            <Button
-                variant="contained"
-                sx={{ p: '1em 3em' }}
-                onClick={singIn}
-            >
-                Sign In with google
-            </Button>
+            <Box sx={{ width: 'fit-content', display: 'grid', gap: 1, m: 1 }}>
+                <Button variant="contained" onClick={logIn}> Log In with google </Button>
+                <Button variant="contained" onClick={logInGuest}> Log In as Guest </Button>
+            </Box>
         </Box>
     );
 }

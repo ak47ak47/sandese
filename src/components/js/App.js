@@ -1,14 +1,15 @@
 import React, { useLayoutEffect, useState } from 'react';
 import '../css/App.css';
-import logo from '../../logo.png';
 import SideBox from './sideBox';
 import ChatBox from './chatBox';
-import SingIn from './singIn';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import LogIn from './logIn';
+import AppHeader from './AppHeader';
 import { useStateValue } from './stateProvider';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   const [{ user }] = useStateValue();
+
   function useWindowWidth() {
     const [width, setWidth] = useState(window.screen.width);
     useLayoutEffect(() => {
@@ -25,16 +26,11 @@ function App() {
 
   return (
     <div className="app">
-      {!user ? (
-        <SingIn />
-      ) : (
-        <>
-          <h1 className="app_title">
-            <img src={logo} alt="app logo" className="app_logo" />
-            sandese
-          </h1>
-          <div className="app_body">
-            <Router>
+      <Router>
+        {user ? (
+          <>
+            <AppHeader />
+            <div className="app_body">
               <Switch>
                 <Route path="/rooms/:roomId">
                   {width > 500 && <SideBox />}
@@ -42,13 +38,16 @@ function App() {
                 </Route>
                 <Route path="/">
                   <SideBox />
+                  {width > 500 && <ChatBox />}
                 </Route>
               </Switch>
-            </Router>
-          </div>
-        </>
-      )}
-    </div>
+            </div>
+          </>
+        ) : (
+          <LogIn />
+        )}
+      </Router>
+    </div >
   );
 }
 

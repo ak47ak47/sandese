@@ -80,6 +80,18 @@
     display: none;
 }
 
+.emptyBox {
+    background-color: #d8deec;
+    flex: 0.65;
+    display: grid;
+    place-items: center;
+}
+
+.emptyBoxMsg {
+    font-size: 2rem;
+    color: hsl(0, 0%, 30%);
+}
+
 @media only screen and (max-width: 500px) {
     .backLink {
         display: block;

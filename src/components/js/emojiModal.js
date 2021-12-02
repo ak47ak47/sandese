@@ -12,7 +12,9 @@ export default function AddNewChat() {
     };
 
     const handleClose = (e, emojiObject) => {
-        document.getElementById(`textField`).value += emojiObject.emoji;
+        if (emojiObject.emoji) {
+            document.getElementById(`textField`).value += emojiObject.emoji;
+        }
         setOpen(false);
     };
 

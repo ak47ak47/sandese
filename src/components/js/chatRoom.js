@@ -9,7 +9,7 @@ function ChatRoom({ id, name }) {
     return (
         <Link to={`/rooms/${id}`} style={{ textDecoration: 'none' }}>
             <div className="chatRoom" style={{ backgroundColor: color }}>
-                <Avatar src={`https://avatars.dicebear.com/api/human/${name}.svg`} variant="rounded" />
+                <Avatar src={`https://avatars.dicebear.com/api/human/${id}.svg`} variant="rounded" />
                 <div className="chatRoomInfo">
                     <h2>{name}</h2>
                 </div>
