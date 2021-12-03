@@ -33,12 +33,12 @@ function App() {
             <div className="app_body">
               <Switch>
                 <Route path="/rooms/:roomId">
-                  {width > 500 && <SideBox />}
+                  {width > 600 && <SideBox />}
                   <ChatBox />
                 </Route>
                 <Route path="/">
                   <SideBox />
-                  {width > 500 && <ChatBox />}
+                  {width > 600 && <ChatBox />}
                 </Route>
               </Switch>
             </div>

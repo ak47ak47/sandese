@@ -31,7 +31,9 @@ export default function AddNewChat() {
                 creator: user.uid,
                 name: capitalize(roomName),
                 timestamp: serverTimestamp(),
-            }).then((ele) => history.push(`rooms/${ele._key.path.segments[1]}`));
+            }).then((ele) => {
+                history.push(`/rooms/${ele._key.path.segments[1]}`);
+            });
         }
         setRoomName('');
         setOpen(false);

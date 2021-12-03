@@ -48,7 +48,7 @@
     height: max-content;
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: linen;
     padding: 0.5rem;
     border-radius: 0.5rem;
 }
@@ -57,7 +57,7 @@
     font-weight: bold;
 }
 
-.msgInfo {
+.msgInfo > * {
     font-size: 0.9em;
     text-align: right;
     color: rgb(125, 125, 125);
@@ -65,7 +65,7 @@
 
 .msgReciver {
     margin-left: auto;
-    background-color: #bce0f9;
+    background-color: azure;
 }
 
 .chatBox_footer {
@@ -90,9 +90,10 @@
 .emptyBoxMsg {
     font-size: 2rem;
     color: hsl(0, 0%, 30%);
+    text-align: center;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
     .backLink {
         display: block;
     }
